@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Kirana Desk API Documentation",
+    "title": "MediDesk API Documentation",
     "version": "1.0.0",
-    "description": "API documentation for the Kirana Desk backend including Activation, Synchronization, and Admin Dashboard APIs."
+    "description": "API documentation for the MediDesk backend including Activation, Synchronization, and Admin Dashboard APIs."
   },
   "servers": [
     {
-      "url": "https://bizdesk-backend.onrender.com",
+      "url": "https://medi-desk-backend.onrender.com",
       "description": "Production server"
     },
     {
@@ -34,104 +34,317 @@
       "Vendor": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "deviceId": { "type": "string" },
-          "deviceName": { "type": "string", "nullable": true },
-          "activatedAt": { "type": "string", "format": "date-time", "nullable": true },
-          "plan": { "type": "string" },
-          "planStarted": { "type": "string", "format": "date-time", "nullable": true },
-          "planExpiry": { "type": "string", "format": "date-time", "nullable": true },
-          "status": { "type": "string" },
-          "gracePeriodEnd": { "type": "string", "format": "date-time", "nullable": true },
-          "notes": { "type": "string", "nullable": true },
-          "lastSyncAt": { "type": "string", "format": "date-time", "nullable": true },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deviceId": {
+            "type": "string"
+          },
+          "deviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "activatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "plan": {
+            "type": "string"
+          },
+          "planStarted": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "planExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string"
+          },
+          "gracePeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastSyncAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "ActivationKey": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "key": { "type": "string" },
-          "status": { "type": "string" },
-          "plan": { "type": "string" },
-          "label": { "type": "string", "nullable": true },
-          "vendorId": { "type": "string", "format": "uuid", "nullable": true },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "key": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "vendorId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "Payment": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "vendorId": { "type": "string", "format": "uuid" },
-          "amount": { "type": "number" },
-          "plan": { "type": "string" },
-          "method": { "type": "string" },
-          "reference": { "type": "string", "nullable": true },
-          "paidAt": { "type": "string", "format": "date-time" },
-          "recordedBy": { "type": "string" },
-          "notes": { "type": "string", "nullable": true },
-          "durationDays": { "type": "integer" },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vendorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "plan": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recordedBy": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "durationDays": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "VendorProduct": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "vendorId": { "type": "string", "format": "uuid" },
-          "localId": { "type": "string" },
-          "name": { "type": "string" },
-          "barcode": { "type": "string", "nullable": true },
-          "price": { "type": "number" },
-          "costPrice": { "type": "number", "nullable": true },
-          "stock": { "type": "integer" },
-          "category": { "type": "string", "nullable": true },
-          "expiryDate": { "type": "string", "format": "date-time", "nullable": true },
-          "imageUrl": { "type": "string", "nullable": true },
-          "brand": { "type": "string", "nullable": true },
-          "remoteUpdatedAt": { "type": "string", "format": "date-time", "nullable": true },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vendorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "localId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "barcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number"
+          },
+          "costPrice": {
+            "type": "number",
+            "nullable": true
+          },
+          "stock": {
+            "type": "integer"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "VendorInvoice": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "vendorId": { "type": "string", "format": "uuid" },
-          "localId": { "type": "string" },
-          "invoiceNumber": { "type": "string" },
-          "totalAmount": { "type": "number" },
-          "customerName": { "type": "string", "nullable": true },
-          "customerPhone": { "type": "string", "nullable": true },
-          "items": { "type": "array", "items": { "type": "object" } },
-          "invoiceCreatedAt": { "type": "string", "format": "date-time" },
-          "remoteUpdatedAt": { "type": "string", "format": "date-time", "nullable": true },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vendorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "localId": {
+            "type": "string"
+          },
+          "invoiceNumber": {
+            "type": "string"
+          },
+          "totalAmount": {
+            "type": "number"
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "invoiceCreatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remoteUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "VendorShop": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "format": "uuid" },
-          "vendorId": { "type": "string", "format": "uuid" },
-          "shopName": { "type": "string", "nullable": true },
-          "address": { "type": "string", "nullable": true },
-          "phone": { "type": "string", "nullable": true },
-          "whatsappNumber": { "type": "string", "nullable": true },
-          "upiId": { "type": "string", "nullable": true },
-          "gstin": { "type": "string", "nullable": true },
-          "logoUrl": { "type": "string", "nullable": true },
-          "footerMessage": { "type": "string", "nullable": true },
-          "remoteUpdatedAt": { "type": "string", "format": "date-time", "nullable": true },
-          "createdAt": { "type": "string", "format": "date-time" },
-          "updatedAt": { "type": "string", "format": "date-time" }
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vendorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "shopName": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "whatsappNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "upiId": {
+            "type": "string",
+            "nullable": true
+          },
+          "gstin": {
+            "type": "string",
+            "nullable": true
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "footerMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       }
     }
@@ -149,8 +362,12 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ok": { "type": "boolean" },
-                    "service": { "type": "string" }
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "service": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -169,11 +386,23 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["key", "deviceId"],
+                "required": [
+                  "key",
+                  "deviceId"
+                ],
                 "properties": {
-                  "key": { "type": "string", "description": "Activation key" },
-                  "deviceId": { "type": "string", "description": "Unique device identifier" },
-                  "deviceName": { "type": "string", "description": "Friendly name of the device" }
+                  "key": {
+                    "type": "string",
+                    "description": "Activation key"
+                  },
+                  "deviceId": {
+                    "type": "string",
+                    "description": "Unique device identifier"
+                  },
+                  "deviceName": {
+                    "type": "string",
+                    "description": "Friendly name of the device"
+                  }
                 }
               }
             }
@@ -187,20 +416,42 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "token": { "type": "string", "description": "JWT authentication token" },
-                    "vendorId": { "type": "string", "format": "uuid" },
-                    "plan": { "type": "string" },
-                    "planExpiry": { "type": "string", "format": "date-time", "nullable": true },
-                    "status": { "type": "string" }
+                    "token": {
+                      "type": "string",
+                      "description": "JWT authentication token"
+                    },
+                    "vendorId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "plan": {
+                      "type": "string"
+                    },
+                    "planExpiry": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string"
+                    }
                   }
                 }
               }
             }
           },
-          "400": { "description": "Missing or invalid parameters" },
-          "403": { "description": "Activation key has been revoked" },
-          "404": { "description": "Invalid activation key" },
-          "409": { "description": "Activation key already used on another device" }
+          "400": {
+            "description": "Missing or invalid parameters"
+          },
+          "403": {
+            "description": "Activation key has been revoked"
+          },
+          "404": {
+            "description": "Invalid activation key"
+          },
+          "409": {
+            "description": "Activation key already used on another device"
+          }
         }
       }
     },
@@ -209,7 +460,9 @@
         "summary": "Validate vendor token",
         "description": "Check validity of current authorization token and retrieve license details.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -219,19 +472,40 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "valid": { "type": "boolean" },
-                    "vendorId": { "type": "string", "format": "uuid" },
-                    "plan": { "type": "string" },
-                    "planExpiry": { "type": "string", "format": "date-time", "nullable": true },
-                    "gracePeriodEnd": { "type": "string", "format": "date-time", "nullable": true },
-                    "status": { "type": "string" }
+                    "valid": {
+                      "type": "boolean"
+                    },
+                    "vendorId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "plan": {
+                      "type": "string"
+                    },
+                    "planExpiry": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "gracePeriodEnd": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string"
+                    }
                   }
                 }
               }
             }
           },
-          "402": { "description": "Subscription expired" },
-          "403": { "description": "Licence revoked" }
+          "402": {
+            "description": "Subscription expired"
+          },
+          "403": {
+            "description": "Licence revoked"
+          }
         }
       }
     },
@@ -240,7 +514,9 @@
         "summary": "Get subscription status",
         "description": "Retrieve current subscription details and remaining days.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -250,12 +526,30 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "vendorId": { "type": "string", "format": "uuid" },
-                    "plan": { "type": "string" },
-                    "planExpiry": { "type": "string", "format": "date-time", "nullable": true },
-                    "gracePeriodEnd": { "type": "string", "format": "date-time", "nullable": true },
-                    "status": { "type": "string" },
-                    "daysRemaining": { "type": "integer", "nullable": true }
+                    "vendorId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "plan": {
+                      "type": "string"
+                    },
+                    "planExpiry": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "gracePeriodEnd": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "daysRemaining": {
+                      "type": "integer",
+                      "nullable": true
+                    }
                   }
                 }
               }
@@ -269,7 +563,9 @@
         "summary": "Push all records to sync",
         "description": "Synchronize products, invoices, and shop info all at once.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -278,9 +574,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "products": { "type": "array", "items": { "type": "object" } },
-                  "invoices": { "type": "array", "items": { "type": "object" } },
-                  "shop": { "type": "object" }
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "invoices": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "shop": {
+                    "type": "object"
+                  }
                 }
               }
             }
@@ -294,8 +602,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ok": { "type": "boolean" },
-                    "syncedAt": { "type": "string", "format": "date-time" }
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "syncedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               }
@@ -309,7 +622,9 @@
         "summary": "Pull all synced records",
         "description": "Retrieve all products, invoices, and shop info synced for this vendor.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -319,9 +634,21 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "products": { "type": "array", "items": { "$ref": "#/components/schemas/VendorProduct" } },
-                    "invoices": { "type": "array", "items": { "$ref": "#/components/schemas/VendorInvoice" } },
-                    "shop": { "$ref": "#/components/schemas/VendorShop" }
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorProduct"
+                      }
+                    },
+                    "invoices": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorInvoice"
+                      }
+                    },
+                    "shop": {
+                      "$ref": "#/components/schemas/VendorShop"
+                    }
                   }
                 }
               }
@@ -335,7 +662,9 @@
         "summary": "Sync products list",
         "description": "Send bulk vendor products to the cloud database.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -344,7 +673,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "products": { "type": "array", "items": { "type": "object" } }
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
                 }
               }
             }
@@ -358,8 +692,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ok": { "type": "boolean" },
-                    "syncedAt": { "type": "string", "format": "date-time" }
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "syncedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               }
@@ -373,7 +712,9 @@
         "summary": "Sync invoices list",
         "description": "Send bulk vendor invoices/sales to the cloud database.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -382,7 +723,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "invoices": { "type": "array", "items": { "type": "object" } }
+                  "invoices": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
                 }
               }
             }
@@ -396,8 +742,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ok": { "type": "boolean" },
-                    "syncedAt": { "type": "string", "format": "date-time" }
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "syncedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               }
@@ -411,7 +762,9 @@
         "summary": "Sync shop profile",
         "description": "Send current shop configuration to the cloud database.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -420,7 +773,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "shop": { "type": "object" }
+                  "shop": {
+                    "type": "object"
+                  }
                 }
               }
             }
@@ -434,8 +789,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "ok": { "type": "boolean" },
-                    "syncedAt": { "type": "string", "format": "date-time" }
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "syncedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
                   }
                 }
               }
@@ -449,7 +809,9 @@
         "summary": "Sync summary info",
         "description": "Retrieve sync timestamp and database counts for vendor.",
         "security": [
-          { "bearerAuth": [] }
+          {
+            "bearerAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -459,10 +821,20 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "lastSync": { "type": "string", "format": "date-time", "nullable": true },
-                    "productCount": { "type": "integer" },
-                    "invoiceCount": { "type": "integer" },
-                    "pendingRecords": { "type": "integer" }
+                    "lastSync": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "productCount": {
+                      "type": "integer"
+                    },
+                    "invoiceCount": {
+                      "type": "integer"
+                    },
+                    "pendingRecords": {
+                      "type": "integer"
+                    }
                   }
                 }
               }
@@ -474,9 +846,13 @@
     "/admin/vendors": {
       "get": {
         "summary": "List all vendors",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -485,7 +861,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Vendor" }
+                  "items": {
+                    "$ref": "#/components/schemas/Vendor"
+                  }
                 }
               }
             }
@@ -496,12 +874,24 @@
     "/admin/vendors/{id}": {
       "get": {
         "summary": "Get vendor details",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -510,11 +900,15 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    { "$ref": "#/components/schemas/Vendor" },
+                    {
+                      "$ref": "#/components/schemas/Vendor"
+                    },
                     {
                       "type": "object",
                       "properties": {
-                        "shop": { "$ref": "#/components/schemas/VendorShop" }
+                        "shop": {
+                          "$ref": "#/components/schemas/VendorShop"
+                        }
                       }
                     }
                   ]
@@ -528,12 +922,24 @@
     "/admin/vendors/{id}/plan": {
       "put": {
         "summary": "Update vendor plan",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "required": true,
@@ -541,81 +947,155 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["plan"],
+                "required": [
+                  "plan"
+                ],
                 "properties": {
-                  "plan": { "type": "string", "enum": ["none", "monthly", "yearly", "lifetime"] },
-                  "durationDays": { "type": "integer", "description": "Optional custom duration" }
+                  "plan": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "monthly",
+                      "yearly",
+                      "lifetime"
+                    ]
+                  },
+                  "durationDays": {
+                    "type": "integer",
+                    "description": "Optional custom duration"
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Plan updated successfully" }
+          "200": {
+            "description": "Plan updated successfully"
+          }
         }
       }
     },
     "/admin/vendors/{id}/revoke": {
       "post": {
         "summary": "Revoke vendor license",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "License revoked successfully" }
+          "200": {
+            "description": "License revoked successfully"
+          }
         }
       }
     },
     "/admin/vendors/{id}/restore": {
       "post": {
         "summary": "Restore vendor license",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "License restored successfully" }
+          "200": {
+            "description": "License restored successfully"
+          }
         }
       }
     },
     "/admin/vendors/{id}/reset-device": {
       "post": {
         "summary": "Reset device assignment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "Device reset successful" }
+          "200": {
+            "description": "Device reset successful"
+          }
         }
       }
     },
     "/admin/vendors/{id}/products": {
       "get": {
         "summary": "List vendor products",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
             "description": "List of vendor products",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/VendorProduct" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VendorProduct"
+                  }
+                }
               }
             }
           }
@@ -625,19 +1105,36 @@
     "/admin/vendors/{id}/invoices": {
       "get": {
         "summary": "List vendor invoices",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
             "description": "List of vendor invoices",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/VendorInvoice" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VendorInvoice"
+                  }
+                }
               }
             }
           }
@@ -647,9 +1144,13 @@
     "/admin/keys/generate": {
       "post": {
         "summary": "Generate activation keys",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -657,34 +1158,60 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["plan"],
+                "required": [
+                  "plan"
+                ],
                 "properties": {
-                  "count": { "type": "integer", "default": 5 },
-                  "plan": { "type": "string", "enum": ["monthly", "yearly", "lifetime"] },
-                  "label": { "type": "string", "nullable": true }
+                  "count": {
+                    "type": "integer",
+                    "default": 5
+                  },
+                  "plan": {
+                    "type": "string",
+                    "enum": [
+                      "monthly",
+                      "yearly",
+                      "lifetime"
+                    ]
+                  },
+                  "label": {
+                    "type": "string",
+                    "nullable": true
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Keys generated successfully" }
+          "200": {
+            "description": "Keys generated successfully"
+          }
         }
       }
     },
     "/admin/keys": {
       "get": {
         "summary": "List all activation keys",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
             "description": "List of keys",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/ActivationKey" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActivationKey"
+                  }
+                }
               }
             }
           }
@@ -694,39 +1221,71 @@
     "/admin/keys/{id}": {
       "delete": {
         "summary": "Delete activation key",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "Key deleted successfully" }
+          "200": {
+            "description": "Key deleted successfully"
+          }
         }
       }
     },
     "/admin/keys/{id}/revoke": {
       "post": {
         "summary": "Revoke activation key",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "Key revoked successfully" }
+          "200": {
+            "description": "Key revoked successfully"
+          }
         }
       }
     },
     "/admin/payments": {
       "post": {
         "summary": "Record a new payment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "requestBody": {
           "required": true,
@@ -734,35 +1293,76 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["vendorId", "amount", "plan", "method"],
+                "required": [
+                  "vendorId",
+                  "amount",
+                  "plan",
+                  "method"
+                ],
                 "properties": {
-                  "vendorId": { "type": "string", "format": "uuid" },
-                  "amount": { "type": "number" },
-                  "plan": { "type": "string", "enum": ["monthly", "yearly", "lifetime"] },
-                  "method": { "type": "string", "enum": ["cash", "upi", "other"] },
-                  "reference": { "type": "string", "nullable": true },
-                  "notes": { "type": "string", "nullable": true }
+                  "vendorId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "plan": {
+                    "type": "string",
+                    "enum": [
+                      "monthly",
+                      "yearly",
+                      "lifetime"
+                    ]
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "cash",
+                      "upi",
+                      "other"
+                    ]
+                  },
+                  "reference": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "notes": {
+                    "type": "string",
+                    "nullable": true
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Payment recorded and subscription extended" }
+          "200": {
+            "description": "Payment recorded and subscription extended"
+          }
         }
       },
       "get": {
         "summary": "List all recorded payments",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
             "description": "List of payments",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Payment" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
               }
             }
           }
@@ -772,19 +1372,36 @@
     "/admin/payments/vendor/{id}": {
       "get": {
         "summary": "List payments for a specific vendor",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "string", "format": "uuid" } }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
             "description": "List of vendor payments",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Payment" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
               }
             }
           }
@@ -794,9 +1411,13 @@
     "/admin/analytics/overview": {
       "get": {
         "summary": "Overview metrics",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -806,10 +1427,18 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "totalVendors": { "type": "integer" },
-                    "activeVendors": { "type": "integer" },
-                    "revenueMonth": { "type": "number" },
-                    "revenueAll": { "type": "number" }
+                    "totalVendors": {
+                      "type": "integer"
+                    },
+                    "activeVendors": {
+                      "type": "integer"
+                    },
+                    "revenueMonth": {
+                      "type": "number"
+                    },
+                    "revenueAll": {
+                      "type": "number"
+                    }
                   }
                 }
               }
@@ -821,9 +1450,13 @@
     "/admin/analytics/revenue": {
       "get": {
         "summary": "Monthly revenue analytics",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -835,8 +1468,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
-                      "month": { "type": "string" },
-                      "amount": { "type": "number" }
+                      "month": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      }
                     }
                   }
                 }
@@ -849,9 +1486,13 @@
     "/admin/analytics/subscriptions": {
       "get": {
         "summary": "Active subscriptions breakdown",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
-          { "adminSecretAuth": [] }
+          {
+            "adminSecretAuth": []
+          }
         ],
         "responses": {
           "200": {
@@ -860,7 +1501,9 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": { "type": "integer" }
+                  "additionalProperties": {
+                    "type": "integer"
+                  }
                 }
               }
             }
